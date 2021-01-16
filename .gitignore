@@ -1,0 +1,9 @@
+    
+*.zip 
+
+*.pt
+
+SAMA/trained_model/
+
+SAMA/dataset/
+
