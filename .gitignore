@@ -7,3 +7,4 @@ SAMA/trained_model/*
 
 SAMA/dataset/*
 
+SAMA/model/__pycache__/
