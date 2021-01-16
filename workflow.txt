@@ -1,0 +1,21 @@
+ssh hjpan@gatekeeper.cs.hku.hk
+ssh hjpan@gpugate1.cs.hku.hk
+gpu-interactive
+exit
+
+conda activate nlp
+conda remove --name myenv --all
+conda info --envs
+
+conda env export > environment.yml
+
+
+
+python=3.8
+cuda = 11.0
+
+
+
+byakuya0415@gmail.com
+
+git setting:
