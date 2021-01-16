@@ -3,7 +3,7 @@
 
 *.pt
 
-SAMA/trained_model/
+SAMA/trained_model/*
 
-SAMA/dataset/
+SAMA/dataset/*
 
