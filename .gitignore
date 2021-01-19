@@ -3,6 +3,14 @@
 
 *.pt
 
+*.json
+
+*.pyc
+
+*.pkl
+
+Meansum/*
+
 SAMA/trained_model/*
 
 SAMA/dataset/*
