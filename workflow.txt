@@ -19,3 +19,7 @@ cuda = 11.0
 byakuya0415@gmail.com
 
 git setting:
+
+Remove Git Commit which has been pushed but failed git rebase -i
+https://blog.csdn.net/xmh594603296/article/details/83987271
+gdown https://drive.google.com/uc?id=1rrcHuaF4o4LOjyX_A3YWIEJiRYD2X94a
