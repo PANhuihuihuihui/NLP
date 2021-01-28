@@ -12,6 +12,10 @@ pointer = True
 
 #
 model_name ="seq2seq"
+encoder_save_name = "encoder_bi_512"
+decoder_save_name ="decoder_ni_512"
+attention_save_name = "attention_512"
+reduce_state_save_name = "reduce"
 
 # Data
 max_vocab_size = 30000
