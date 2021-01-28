@@ -57,9 +57,6 @@ def train(dataset, val_dataset, v, start_epoch=0):
     if (os.path.exists(config.losses_path)):
         with open(config.losses_path, 'rb') as f:
             val_losses = pickle.load(f)
-    else:
-        with open(config.losses_path, 'w+') as f:
-            pickle.dump(val_losses, f)
 #     torch.cuda.empty_cache()
     # SummaryWriter: Log writer used for TensorboardX visualization.
     writer = SummaryWriter(config.log_path)
