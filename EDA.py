@@ -13,21 +13,19 @@ for index,desc ,query in zip(data["index"],data['Description'],data['Query']):
         query = re.sub(r"[^a-zA-Z0-9.?,!:]"," ",query)
         query = re.sub(' +',' ',query)
         if len(desc) < 40:
-            print(desc)
+            # print(desc)
             continue
-        length_summary.append(len(desc))
+        word_len = len(desc.split(" "))
+        if word_len<20 or word_len>1000:
+            # print(desc)
+            continue
+        length_summary.append(word_len)
     else:
         continue
     dic = {
-        "review_id":str(index), 
-        "user_id": query,
-        "business_id": query,
-        "stars": str(4),
-        "date": "2016-03-09",
+        "id":str(index), 
+        "job_id": query,
         "text": desc,
-        "useful": str(0),
-        "funny":str(0),
-        "cool": str(0)
     }
 
     # dic = {
@@ -118,3 +116,15 @@ print(df.describe(percentiles=[.05,.25, .5, .75,.95]))
 # Number of train reviews: 59516 / 57541
 # Number of val reviews: 6258 / 7192
 # Number of test reviews: 6153 / 7192
+
+#                 len
+# count  71927.000000
+# mean     240.190638
+# std      130.695792
+# min        4.000000
+# 5%        57.000000
+# 25%      149.500000
+# 50%      235.000000
+# 75%      304.000000
+# 95%      559.000000
+# max     2736.000000
