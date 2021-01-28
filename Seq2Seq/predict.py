@@ -14,6 +14,7 @@ import config
 from model import PGN
 from dataset import PairDataset
 from utils import source2ids, outputids2words, Beam, timer, add2heap, replace_oovs
+from nltk.corpus import stopwords
 
 
 class Predict():
@@ -31,11 +32,8 @@ class Predict():
 
         self.model = PGN(self.vocab)
         self.stop_word = list(
-            set([
-                self.vocab[x.strip()] for x in
-                open(config.stop_word_file
-                     ).readlines()
-            ]))
+            set(stopwords.words('english'))
+            )
         self.model.load_model()
         self.model.to(self.DEVICE)
 
@@ -116,11 +114,11 @@ class Predict():
         # Filter forbidden tokens.
         if len(beam.tokens) == 1:
             forbidden_ids = [
-                self.vocab[u"这"],
-                self.vocab[u"此"],
-                self.vocab[u"采用"],
-                self.vocab[u"，"],
-                self.vocab[u"。"],
+                self.vocab[u"this"],
+                self.vocab[u"that"],
+                self.vocab[u"hope"],
+                self.vocab[u","],
+                self.vocab[u"."],
             ]
             log_probs[forbidden_ids] = -float('inf')
         # EOS token penalty. Follow the definition in

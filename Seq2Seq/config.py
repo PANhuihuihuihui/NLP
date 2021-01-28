@@ -11,15 +11,15 @@ embed_size: int = 512
 pointer = True
 
 # Data
-max_vocab_size = 20000
+max_vocab_size = 30000
 embed_file: Optional[str] = None  # use pre-trained embeddings
 source = 'big_samples'    # use value: train or  big_samples 
-data_path: str = '../files/{}.txt'.format(source)
-val_data_path: Optional[str] = '../files/dev.txt'
-test_data_path: Optional[str] = '../files/test.txt'
-stop_word_file = '../files/HIT_stop_words.txt'
-max_src_len: int = 300  # exclusive of special tokens such as EOS
-max_tgt_len: int = 100  # exclusive of special tokens such as EOS
+data_path: str = 'files/{}.txt'.format(source)
+val_data_path: Optional[str] = 'files/dev.txt'
+test_data_path: Optional[str] = 'files/test.txt'
+stop_word_file = 
+max_src_len: int = 400  # exclusive of special tokens such as EOS
+max_tgt_len: int = 200  # exclusive of special tokens such as EOS
 truncate_src: bool = True
 truncate_tgt: bool = True
 min_dec_steps: int = 30
