@@ -54,9 +54,8 @@ def train(dataset, val_dataset, v, start_epoch=0):
                                   collate_fn=collate_fn)
 
     val_losses = np.inf
-    if (os.path.exists(config.losses_path)):
-        with open(config.losses_path, 'rb') as f:
-            val_losses = pickle.load(f)
+    with open(config.losses_path, 'wb') as f:
+        pickle.dump(val_losses, f)
 #     torch.cuda.empty_cache()
     # SummaryWriter: Log writer used for TensorboardX visualization.
     writer = SummaryWriter(config.log_path)
