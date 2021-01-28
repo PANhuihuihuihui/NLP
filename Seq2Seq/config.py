@@ -33,6 +33,7 @@ dec_out_dropout = 0
 
 # Training
 losses_path = "loss/"
+log_path = "log/"
 trunc_norm_init_std = 1e-4
 eps = 1e-31
 learning_rate = 0.001
