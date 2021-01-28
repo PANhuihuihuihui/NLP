@@ -10,6 +10,9 @@ dec_hidden_size: Optional[int] = 512
 embed_size: int = 512
 pointer = True
 
+#
+model_name ="seq2seq"
+
 # Data
 max_vocab_size = 30000
 embed_file: Optional[str] = None  # use pre-trained embeddings
