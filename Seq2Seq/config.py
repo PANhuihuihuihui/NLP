@@ -13,7 +13,7 @@ pointer = True
 # Data
 max_vocab_size = 30000
 embed_file: Optional[str] = None  # use pre-trained embeddings
-source = 'big_samples'    # use value: train or  big_samples 
+source = 'samples'    # use value: train or  big_samples 
 data_path: str = 'files/{}.txt'.format(source)
 val_data_path: Optional[str] = 'files/dev.txt'
 test_data_path: Optional[str] = 'files/test.txt'
