@@ -32,12 +32,13 @@ dec_out_dropout = 0
 
 
 # Training
+losses_path = "loss/"
 trunc_norm_init_std = 1e-4
 eps = 1e-31
 learning_rate = 0.001
 lr_decay = 0.0
 initial_accumulator_value = 0.1
-epochs = 8
+epochs = 20
 batch_size = 32
 coverage = False
 fine_tune = False
