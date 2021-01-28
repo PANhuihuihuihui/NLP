@@ -5,7 +5,7 @@ import sys
 import pathlib
 
 import torch
-import jieba
+import nltk
 
 abs_path = pathlib.Path(__file__).parent.absolute()
 sys.path.append(sys.path.append(abs_path))
@@ -204,7 +204,7 @@ class Predict():
     @timer(module='doing prediction')
     def predict(self, text, tokenize=True, beam_search=True):
         if isinstance(text, str) and tokenize:
-            text = list(jieba.cut(text))
+            text = nltk.word_tokenize(text)
         x, oov = source2ids(text, self.vocab)
         x = torch.tensor(x).to(self.DEVICE)
         len_oovs = torch.tensor([len(oov)]).to(self.DEVICE)
