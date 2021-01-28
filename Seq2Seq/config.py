@@ -17,7 +17,6 @@ source = 'big_samples'    # use value: train or  big_samples
 data_path: str = 'files/{}.txt'.format(source)
 val_data_path: Optional[str] = 'files/dev.txt'
 test_data_path: Optional[str] = 'files/test.txt'
-stop_word_file = 
 max_src_len: int = 400  # exclusive of special tokens such as EOS
 max_tgt_len: int = 200  # exclusive of special tokens such as EOS
 truncate_src: bool = True
