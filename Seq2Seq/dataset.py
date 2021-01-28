@@ -9,7 +9,6 @@ from torch.utils.data import Dataset
 
 abs_path = pathlib.Path(__file__).parent.absolute()
 sys.path.append(sys.path.append(abs_path))
-import 
 from utils import simple_tokenizer, count_words, sort_batch_by_len, source2ids, abstract2ids
 from vocab import Vocab
 import config
