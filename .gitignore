@@ -7,8 +7,6 @@
 
 *.pyc
 
-*.pkl
-
 Meansum/*
 
 Chinese-Marketing-text-generation/*
