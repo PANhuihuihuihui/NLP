@@ -5,8 +5,7 @@ import sys
 import pathlib
 
 from rouge import Rouge
-import jieba
-
+import nltk
 abs_path = pathlib.Path(__file__).parent.absolute()
 sys.path.append(sys.path.append(abs_path))
 
@@ -30,7 +29,7 @@ class RougeEval():
         with open(self.path, 'r') as test:
             for line in test:
                 source, ref = line.strip().split('<sep>')
-                ref = ''.join(list(jieba.cut(ref))).replace('。', '.')
+                ref = ''.join(nltk.word_tokenize(ref)).replace('.', ',')
                 self.sources.append(source)
                 self.refs.append(ref)
         print(f'Test set contains {len(self.sources)} samples.')
