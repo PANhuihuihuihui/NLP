@@ -29,7 +29,9 @@ class RougeEval():
         with open(self.path, 'r') as test:
             for line in test:
                 source, ref = line.strip().split('<sep>')
-                ref = ''.join(nltk.word_tokenize(ref)).replace('.', ',')
+                ref = ''.join(ref).replace('.', ',')
+                print(source)
+                print(ref)
                 self.sources.append(source)
                 self.refs.append(ref)
         print(f'Test set contains {len(self.sources)} samples.')
