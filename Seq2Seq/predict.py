@@ -234,7 +234,7 @@ if __name__ == "__main__":
         for i in range(10):
             picked = random.choice(list(test))
             source, ref = picked.strip().split('<sep>')
-            print("-----------{}---------".format{i})
+            print("-----------{}---------".format(i))
             print('source: ', source, '\n')
             greedy_prediction = pred.predict(source.split(),  beam_search=False)
             print('greedy: ', greedy_prediction, '\n')
