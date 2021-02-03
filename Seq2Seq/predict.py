@@ -231,8 +231,9 @@ if __name__ == "__main__":
     print('vocab_size: ', len(pred.vocab))
     # Randomly pick a sample in test set to predict.
     with open(config.test_data_path, 'r') as test:
+        value = list(test)
         for i in range(10):
-            picked = random.choice(list(test))
+            picked = random.choice(value)
             source, ref = picked.strip().split('<sep>')
             print("-----------{}---------".format(i))
             print('source: ', source, '\n')
