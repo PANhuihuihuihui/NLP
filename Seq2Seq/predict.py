@@ -231,12 +231,14 @@ if __name__ == "__main__":
     print('vocab_size: ', len(pred.vocab))
     # Randomly pick a sample in test set to predict.
     with open(config.test_data_path, 'r') as test:
-        picked = random.choice(list(test))
-        source, ref = picked.strip().split('<sep>')
-
-    print('source: ', source, '\n')
-    greedy_prediction = pred.predict(source.split(),  beam_search=False)
-    print('greedy: ', greedy_prediction, '\n')
-    beam_prediction = pred.predict(source.split(),  beam_search=True)
-    print('beam: ', beam_prediction, '\n')
-    print('ref: ', ref, '\n')
+        for i in range(10):
+            picked = random.choice(list(test))
+            source, ref = picked.strip().split('<sep>')
+            print("-----------{}---------".format{i})
+            print('source: ', source, '\n')
+            greedy_prediction = pred.predict(source.split(),  beam_search=False)
+            print('greedy: ', greedy_prediction, '\n')
+            beam_prediction = pred.predict(source.split(),  beam_search=True)
+            print('beam: ', beam_prediction, '\n')
+            print('ref: ', ref, '\n')
+            
