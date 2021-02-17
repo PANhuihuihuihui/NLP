@@ -30,7 +30,9 @@ def train(dataset, val_dataset, v, start_epoch=0):
     DEVICE = torch.device("cuda" if config.is_cuda else "cpu")
 
     model = PGN(v)
-    # model.load_model()
+
+    model.load_model()
+
     model.to(DEVICE)
     if config.fine_tune:
         # In fine-tuning mode, we fix the weights of all parameters except attention.wc.
