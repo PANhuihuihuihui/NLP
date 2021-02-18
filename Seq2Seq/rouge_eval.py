@@ -28,7 +28,7 @@ class RougeEval():
         print('Reading from ', self.path)
         with open(self.path, 'r') as test:
             for id,line in enumerate(test):
-                if id % 5 != 0:
+                if id % 7 != 0:
                     continue
                 source, ref = line.strip().split('<sep>')
                 ref = ' '.join(nltk.word_tokenize(ref)).replace('.', ',')
