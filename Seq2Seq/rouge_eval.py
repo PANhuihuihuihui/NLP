@@ -27,7 +27,7 @@ class RougeEval():
     def process(self):
         print('Reading from ', self.path)
         with open(self.path, 'r') as test:
-            for id,line in enumerate(test)
+            for id,line in enumerate(test):
                 if id % 5 != 0:
                     continue
                 source, ref = line.strip().split('<sep>')
