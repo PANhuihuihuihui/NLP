@@ -30,7 +30,7 @@ class RougeEval():
             for id,line in enumerate(test):
                 if id % 7 != 0:
                     continue
-                if id >25:
+                if id >25*7:
                     continue
                 source, ref = line.strip().split('<sep>')
                 ref = ' '.join(nltk.word_tokenize(ref)).replace('.', ',')
