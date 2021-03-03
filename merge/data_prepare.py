@@ -1,6 +1,7 @@
 import torch
 import numpy as np
 import random
+from printEnvVariables import dataPreprocess
 #some config
 train = "train.pt"
 test = "test.pt"
