@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+from processdataall import *
 #some config
 train = "train.pt"
 test = "test.pt"
