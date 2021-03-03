@@ -1,3 +1,5 @@
+import torch
+import numpy as np
 #some config
 train = "train.pt"
 test = "test.pt"
