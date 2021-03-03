@@ -15,7 +15,7 @@ gVocab = torch.load(vocab_dir)
 # print("test: ",test_dataset)
 # print("vocb: ",gVocab)
 for i in range(10):
-    instance = random.choice(test)
+    instance = random.choice(test_dataset)
     print(instance.src)
     print(instance.skilltgt)
     print(instance.skillnet)
