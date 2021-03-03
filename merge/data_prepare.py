@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 import random
-from processdataall import dataPreprocess
+from processdataall import *
 #some config
 train = "train.pt"
 test = "test.pt"
