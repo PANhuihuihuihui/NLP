@@ -36,6 +36,8 @@ class vocab:
     def __init__(self):
         self.id2word = {}
         self.word2id = {}
+    def __len__(self):
+        return len(self.id2word)
 
     def getIndex(self, word):
         if word in self.word2id:
