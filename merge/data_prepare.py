@@ -4,7 +4,7 @@ import random
 from processdataall import *
 #some config
 train = "/userhome/30/hjpan/NLP/SAMA/data/train.pt"
-test = "/userhome/30/hjpan/NLP/SAMA/datatest.pt"
+test = "/userhome/30/hjpan/NLP/SAMA/data/test.pt"
 vocab_dir = "/userhome/30/hjpan/NLP/SAMA/data/vocab.pt"
 
 # form SAMA .pt data to text file
