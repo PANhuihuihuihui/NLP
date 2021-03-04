@@ -26,7 +26,20 @@ for instance in train_dataset:
         max_tar = len(instance.tgt)
     
 print(max_src,max_tar)
+"""
+train:  8610 test:  2047
+src_vocab:  14289 tar_vocab:  18712 skill_vocab 8506
+704 421
+"""
+data = train_dataset + test_dataset
+train = data[0:8000] 
+val = data[8000:9000] 
+test = data[9000:-1]
 
+print("train: ",len(train),"val: ",len(val),"test: ",len(test))
+torch.save(train, '/userhome/30/hjpan/NLP/merge/data/train.pt')
+torch.save(train, '/userhome/30/hjpan/NLP/merge/data/val.pt')
+torch.save(train, '/userhome/30/hjpan/NLP/merge/data/test.pt')
 
 
 
