@@ -8,6 +8,8 @@ class vocab:
     def __init__(self):
         self.id2word = {}
         self.word2id = {}
+    def __len__(self):
+        return len(self.id2word)
 
     def getIndex(self, word):
         if word in self.word2id:
@@ -24,6 +26,7 @@ class vocab:
         if word not in self.word2id:
             self.word2id[word] = str(len(self.id2word))
             self.id2word[str(len(self.id2word))] = word
+    
 class dataPreprocess:
     def __init__(self):
         self.src = []

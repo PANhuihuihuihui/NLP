@@ -199,11 +199,11 @@ class PGN(nn.Module):
         self.DEVICE = config.DEVICE
         self.attention = Attention(config.hidden_size)
         self.encoder = Encoder(
-            len(v),
+            len(v.src_vocab),
             config.embed_size,
             config.hidden_size,
         )
-        self.decoder = Decoder(len(v),
+        self.decoder = Decoder(len(v.tgt_vocab),
                                config.embed_size,
                                config.hidden_size,
                                )
