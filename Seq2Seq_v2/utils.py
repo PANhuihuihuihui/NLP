@@ -196,7 +196,7 @@ def replace_oovs(in_tensor, vocab):
     """Replace oov tokens in a tensor with the <UNK> token.
     """    
     oov_token = torch.full(in_tensor.shape, 0).long().to(config.DEVICE)
-    out_tensor = torch.where(in_tensor > len(vocab) - 1, oov_token, in_tensor)
+    out_tensor = torch.where(in_tensor > len(vocab.src_vocab) - 1, oov_token, in_tensor)
     return out_tensor
 
 
