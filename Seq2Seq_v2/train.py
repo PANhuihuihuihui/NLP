@@ -31,7 +31,7 @@ def train(dataset, val_dataset, v, start_epoch=0):
 
     model = PGN(v)
 
-    model.load_model()
+    #model.load_model()
 
     model.to(DEVICE)
     if config.fine_tune:
