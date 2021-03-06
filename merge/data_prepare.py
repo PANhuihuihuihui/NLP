@@ -48,6 +48,10 @@ train:  8000 val:  1000 test:  1656
 """
 
 # check the oov and eos index
-for i in range(50):
-    print(gVocab.tgt_vocab.id2word.keys()[:100])
+key= gVocab.tgt_vocab.id2word.keys()
+print(key[0:100])
+key1 = gVocab.src_vocab.id2word.keys()
+print(key1[0:100])
+
+# for i in range(50):
     #gVocab.src_vocab.id2word[i]
