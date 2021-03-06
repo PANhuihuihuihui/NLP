@@ -16,7 +16,7 @@ from tensorboardX import SummaryWriter
 abs_path = pathlib.Path(__file__).parent.absolute()
 sys.path.append(sys.path.append(abs_path))
 
-from dataset import SampleDataset
+from processdataall import *
 from model import PGN
 import config
 from evaluate import evaluate

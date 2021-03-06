@@ -13,6 +13,7 @@ abs_path = pathlib.Path(__file__).parent.absolute()
 sys.path.append(sys.path.append(abs_path))
 import config
 from utils import timer, replace_oovs
+from processdataall import *
 
 
 class Encoder(nn.Module):
