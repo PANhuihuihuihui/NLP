@@ -48,4 +48,5 @@ train:  8000 val:  1000 test:  1656
 """
 
 # check the oov and eos index
-print(gVocab.src_vocab.word2id)
+for i in range(50):
+    print(gVocab.src_vocab.word2id[i])
