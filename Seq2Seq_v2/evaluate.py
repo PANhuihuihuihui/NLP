@@ -28,7 +28,7 @@ def evaluate(model, val_data, epoch):
                                     pin_memory=True, drop_last=True,
                                     collate_fn=collate_fn)
         for batch, data in enumerate(tqdm(val_dataloader)):
-            x, y, x_len, y_len, oov, len_oovs = data
+            x, y, x_len, y_len, len_oovs = data
             if config.is_cuda:
                 x = x.to(DEVICE)
                 y = y.to(DEVICE)
