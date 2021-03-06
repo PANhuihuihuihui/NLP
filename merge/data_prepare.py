@@ -3,14 +3,14 @@ import numpy as np
 import random
 from processdataall import *
 #some config
-# train = "/userhome/30/hjpan/NLP/SAMA/data/train.pt"
-# test = "/userhome/30/hjpan/NLP/SAMA/data/test.pt"
-vocab_dir = "/userhome/30/hjpan/NLP/merge/data/vocab.pt"
+train = "/userhome/30/hjpan/NLP/SAMA/data/train.pt"
+test = "/userhome/30/hjpan/NLP/SAMA/data/test.pt"
+# vocab_dir = "/userhome/30/hjpan/NLP/merge/data/vocab.pt"
 
 # form SAMA .pt data to text file
-# train_dataset = torch.load(train)
-# test_dataset = torch.load(test)
-gVocab = torch.load(vocab_dir)
+train_dataset = torch.load(train)
+test_dataset = torch.load(test)
+# gVocab = torch.load(vocab_dir)
 # print("train: ",train_dataset)
 # print("test: ",test_dataset)
 # print("vocb: ",gVocab)
@@ -31,10 +31,10 @@ train:  8610 test:  2047
 src_vocab:  14289 tar_vocab:  18712 skill_vocab 8506
 704 421
 """
-# data = train_dataset + test_dataset
-# train = data[0:8000] 
-# val = data[8000:9000] 
-# test = data[9000:-1]
+data = train_dataset + test_dataset
+train = data[0:8000] 
+val = data[8000:8500] 
+test = data[8500:-1]
 
 # print("train: ",len(train),"val: ",len(val),"test: ",len(test))
 # torch.save(train, '/userhome/30/hjpan/NLP/merge/data/train.pt')
@@ -48,10 +48,10 @@ train:  8000 val:  1000 test:  1656
 """
 
 # check the oov and eos index
-key= list(gVocab.tgt_vocab.id2word.keys())
-print(key[0:100])
-key1 = list(gVocab.src_vocab.id2word.keys())
-print(key1[0:100])
+# key= list(gVocab.tgt_vocab.id2word.keys())
+# print(key[0:100])
+# key1 = list(gVocab.src_vocab.id2word.keys())
+# print(key1[0:100])
 
-for i in range(50):
-    print(gVocab.src_vocab.id2word[str(i)] == gVocab.tgt_vocab.id2word[str(i)])
+# for i in range(50):
+#     print(gVocab.src_vocab.id2word[str(i)] == gVocab.tgt_vocab.id2word[str(i)])
