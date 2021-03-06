@@ -57,14 +57,12 @@ def sort_batch_by_len(data_batch):
            'y': [],
            'x_len': [],
            'y_len': [],
-           'OOV': [],
            'len_OOV': []}
     for i in range(len(data_batch)):
         res['x'].append(data_batch[i]['x'])
         res['y'].append(data_batch[i]['y'])
         res['x_len'].append(len(data_batch[i]['x']))
         res['y_len'].append(len(data_batch[i]['y']))
-        res['OOV'].append(data_batch[i]['OOV'])
         res['len_OOV'].append(data_batch[i]['len_OOV'])
 
     # Sort indices of data in batch by lengths.
