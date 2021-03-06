@@ -36,10 +36,10 @@ train = data[0:8000]
 val = data[8000:8500] 
 test = data[8500:-1]
 
-# print("train: ",len(train),"val: ",len(val),"test: ",len(test))
-# torch.save(train, '/userhome/30/hjpan/NLP/merge/data/train.pt')
-# torch.save(train, '/userhome/30/hjpan/NLP/merge/data/val.pt')
-# torch.save(train, '/userhome/30/hjpan/NLP/merge/data/test.pt')
+print("train: ",len(train),"val: ",len(val),"test: ",len(test))
+torch.save(train, '/userhome/30/hjpan/NLP/merge/data/train.pt')
+torch.save(train, '/userhome/30/hjpan/NLP/merge/data/val.pt')
+torch.save(train, '/userhome/30/hjpan/NLP/merge/data/test.pt')
 
 """
 src_vocab:  14289 tar_vocab:  18712 skill_vocab 8506
