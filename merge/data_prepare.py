@@ -54,5 +54,4 @@ key1 = list(gVocab.src_vocab.id2word.keys())
 print(key1[0:100])
 
 for i in range(50):
-    print(gVocab.src_vocab.id2word[str(i)])
-    print(gVocab.tgt_vocab.id2word[str(i)])
+    print(gVocab.src_vocab.id2word[str(i)] == gVocab.tgt_vocab.id2word[str(i)])
