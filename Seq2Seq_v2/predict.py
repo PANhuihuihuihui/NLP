@@ -22,18 +22,11 @@ class Predict():
     def __init__(self):
         self.DEVICE = config.DEVICE
 
-        dataset = PairDataset(config.data_path,
-                              max_src_len=config.max_src_len,
-                              max_tgt_len=config.max_tgt_len,
-                              truncate_src=config.truncate_src,
-                              truncate_tgt=config.truncate_tgt)
+        dataset = SampleDataset(config.test_data_path)
+        self.vocab = torch.load(config.vocab_dir)
 
-        self.vocab = dataset.build_vocab(embed_file=config.embed_file)
 
         self.model = PGN(self.vocab)
-        self.stop_word = list(
-            set(stopwords.words('english'))
-            )
         self.model.load_model()
         self.model.to(self.DEVICE)
 
@@ -52,12 +45,12 @@ class Predict():
         decoder_states = self.model.reduce_state(encoder_states)
 
         # Initialize decoder's input at time step 0 with the SOS token.
-        x_t = torch.ones(1) * self.vocab.SOS
+        x_t = torch.ones(1) * 1
         x_t = x_t.to(self.DEVICE, dtype=torch.int64)
-        summary = [self.vocab.SOS]
+        summary = [1]
         coverage_vector = torch.zeros((1, x.shape[1])).to(self.DEVICE)
         # Generate hypothesis with maximum decode step.
-        while int(x_t.item()) != (self.vocab.EOS) \
+        while int(x_t.item()) != 3 \
                 and len(summary) < max_sum_len:
 
             context_vector, attention_weights, coverage_vector = \
@@ -114,11 +107,10 @@ class Predict():
         # Filter forbidden tokens.
         if len(beam.tokens) == 1:
             forbidden_ids = [
-                self.vocab[u"this"],
-                self.vocab[u"that"],
-                self.vocab[u"hope"],
+                self.vocab[u"1"],
+                self.vocab[u"、"],
                 self.vocab[u","],
-                self.vocab[u"."],
+                self.vocab[u"。"],
             ]
             log_probs[forbidden_ids] = -float('inf')
         # EOS token penalty. Follow the definition in
