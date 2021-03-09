@@ -1,0 +1,11 @@
+The Golden Curry serves English food in a family friendly environment . It has a low customer rating . <eos>|||0,3,0 4,5,2 11,12,7 15,16,4 18,19,7 19,20,8
+With 5 out of 5 as a customer rating , The Rice Boat is a non family - friendly , English restaurant located on riverside . <eos>|||1,5,4 9,10,7 10,13,0 19,20,7 20,21,2 24,25,5 25,26,7 26,27,8
+The Cambridge Blue serves traditional English food , and has been given a rating of five stars . <eos>|||0,3,0 5,6,2 7,8,7 17,18,7 18,19,8
+The Golden Palace is in the cheap price range . It is a restaurant <eos>|||0,3,0 6,7,3 9,10,7 13,14,1 14,15,8
+Located near Café Rouge Midsummer House is an Indian restaurant with a poor customer rating . <eos>|||2,4,6 4,6,0 8,9,2 15,16,7 16,17,8
+Alimentum is located in the riverside area and features high priced English food and is not kid friendly . <eos>|||0,1,0 5,6,5 9,10,3 11,12,2 18,19,7 19,20,8
+Clowns is a Japanese coffee shop with 5 out of 5 customer ratings located near Clare Hall in the riverside area . <eos>|||0,1,0 3,4,2 4,6,1 7,11,4 15,17,6 19,20,5 21,22,7 22,23,8
+The Rice Boat , in the riverside area , near Express by Holiday Inn , has English food , is kids friendly , has a high customer rating , and has a price range between 20 and 25 pounds . <eos>|||0,3,0 3,4,7 6,7,5 8,9,7 10,14,6 14,15,7 16,17,2 18,19,7 22,23,7 25,26,4 28,29,7 39,40,7 40,41,8
+The Waterman is located in the city center . It is a low rated Italian restaurant that is not family - friendly and costs more than 20 . <eos>|||0,2,0 8,9,7 12,13,4 14,15,2 27,28,7 28,29,8
+The Plough , near Café Rouge , is a pub serving Italian food . It is not children friendly and in the high price range . <eos>|||0,2,0 2,3,7 4,6,6 6,7,7 9,10,1 11,12,2 13,14,7 22,23,3 25,26,7 26,27,8
+There is a Chinese food restaurant called The Phoenix in the riverside area . It has an average customer rating and the price range is cheap . <eos>|||3,4,2 7,9,0 11,12,5 13,14,7 17,18,4 25,26,3 26,27,7 27,28,8
