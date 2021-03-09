@@ -33,7 +33,7 @@ class RougeEval():
                 if id >25*7:
                     continue
                 source, ref = line.strip().split('<sep>')
-                ref = ' '.join(nltk.word_tokenize(ref)).replace('.', ',')
+                ref = ref.replace('。', '，',"、")
                 self.sources.append(source)
                 self.refs.append(ref)
         print(f'Test set contains {len(self.sources)} samples.')
