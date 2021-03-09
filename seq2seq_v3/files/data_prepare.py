@@ -55,9 +55,9 @@ train = data[0:8000]
 val = data[8000:8500] 
 test = data[8500:-1]
 
-combine("files/trian.txt",train)
-combine("files/val.txt",val)
-combine("files/test.txt",test)
+combine(train,"files/trian.txt")
+combine(val,"files/val.txt")
+combine(test,"files/test.txt")
 
 print("train: ",len(train),"val: ",len(val),"test: ",len(test))
 # torch.save(train, '/userhome/30/hjpan/NLP/merge/data/train.pt')
