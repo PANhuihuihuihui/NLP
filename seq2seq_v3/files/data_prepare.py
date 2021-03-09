@@ -47,6 +47,7 @@ def combine(data,filename):
         final_list.append(src+"<sep>"+tgt)
         if len(final_list)<10:
             print(src+"<sep>"+tgt)
+    print(filename,len(final_list))
     write_samples(final_list,filename)
 
 
@@ -55,9 +56,9 @@ train = data[0:8000]
 val = data[8000:8500] 
 test = data[8500:-1]
 
-combine(train,"files/trian.txt")
-combine(val,"files/val.txt")
-combine(test,"files/test.txt")
+combine(train,"train.txt")
+combine(val,"val.txt")
+combine(test,"test.txt")
 
 print("train: ",len(train),"val: ",len(val),"test: ",len(test))
 # torch.save(train, '/userhome/30/hjpan/NLP/merge/data/train.pt')
