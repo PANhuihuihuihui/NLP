@@ -45,7 +45,7 @@ def combine(data,filename):
     for instance in data:
         length = len(instance.tgt)
         tgt = ' '.join([str(elem) for elem in instance.tgt])
-        tgt.replace("<EOS>","")
+        tgt =  tgt.replace("<EOS>","")
         final_list.append(tgt+" <eos>|||")
         if len(final_list)<10:
             print(tgt+" <eos>|||")
@@ -56,11 +56,10 @@ def src (data,filename):
     final_list = []
     for instance in data:
         src = ' '.join([str(elem) for elem in instance.src])
-        
         src_skill_pred = " ".join([str(elem) for elem in instance.skillnet])
         src_skill = " ".join([str(elem) for elem in instance.skilltgt])
-        src_skill.replace("<SEP>","")
-        src_skill.replace("<EOS>","")
+        src_skill = src_skill.replace("<SEP>","")
+        src_skill = src_skill.replace("<EOS>","")
         final_list.append(valuelist[0]+src+valuelist[1]+valuelist[2]+src_skill+valuelist[3]+valuelist[4]+src_skill_pred+valuelist[5])
         if len(final_list)<10:
             print(valuelist[0]+src+valuelist[1]+valuelist[2]+src_skill+valuelist[3]+valuelist[4]+src_skill_pred+valuelist[5])
@@ -74,10 +73,10 @@ test = data[8500:-1]
 
 combine(train,"train.txt")
 combine(val,"valid.txt")
-src(train,"train.txt")
-src(val,"valid.txt")
+src(train,"src_train.txt")
+src(val,"src_valid.txt")
 combine(test,"test.txt")
-src(test,"test.txt")
+src(test,"src_test.txt")
 # torch.save(train, '/userhome/30/hjpan/NLP/merge/data/train.pt')
 # torch.save(train, '/userhome/30/hjpan/NLP/merge/data/val.pt')
 # torch.save(train, '/userhome/30/hjpan/NLP/merge/data/test.pt')
