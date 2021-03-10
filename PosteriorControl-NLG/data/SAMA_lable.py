@@ -45,13 +45,13 @@ def combine(data,filename):
         length = len(instance.tgt)
         tgt = ' '.join([str(elem) for elem in instance.tgt])
         tgt =  tgt.replace("<EOS>","")
-        final_list.append(tgt+" <eos>|||0,{},1 ".format(length))
+        final_list.append(tgt+" <eos>|||0,{},1 ".format((length-1)/2)+ " {},{},2".format((length-1)/2,length-1) )
         if len(final_list)<10:
             print(tgt+" <eos>|||")
     print(filename,len(final_list))
     write_samples(final_list,filename)
 def src (data,filename):
-    valuelist = ["__start_JD__ "," __end_JD__ ","__start_skill__ "," __end_skill__ ","__start_rel_skill__ "," __end_rel_skill__"]
+    valuelist = ["__start_JD__ "," __end_JD__","__start_skill__ "," __end_skill__ ","__start_rel_skill__ "," __end_rel_skill__ "]
     final_list = []
     for instance in data:
         src = ' '.join([str(elem) for elem in instance.src])
@@ -61,7 +61,7 @@ def src (data,filename):
         src_skill = src_skill.replace("<EOS>","")
         final_list.append(valuelist[0]+src+valuelist[1]+valuelist[2]+src_skill+valuelist[3]+valuelist[4]+src_skill_pred+valuelist[5])
         if len(final_list)<10:
-            print(valuelist[0]+src+valuelist[1]+valuelist[2]+src_skill+valuelist[3]+valuelist[4]+src_skill_pred+valuelist[5])
+            print(valuelist[2]+src_skill+valuelist[3]+valuelist[4]+src_skill_pred+valuelist[5]+valuelist[0]+src+valuelist[1])
     print(filename,len(final_list))
     write_samples(final_list,filename)
 
