@@ -52,7 +52,7 @@ def combine(data,filename):
     print(filename,len(final_list))
     write_samples(final_list,filename)
 def src (data,filename):
-    valuelist = ["__start_JD__ "," __end_JD__","__start_skill__ "," __end_skill__ ","__start_rel_skill__ "," __end_rel_skill__"]
+    valuelist = ["__start_JD__ "," __end_JD__ ","__start_skill__ "," __end_skill__ ","__start_rel_skill__ "," __end_rel_skill__"]
     final_list = []
     for instance in data:
         src = ' '.join([str(elem) for elem in instance.src])
