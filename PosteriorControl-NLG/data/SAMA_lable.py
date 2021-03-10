@@ -45,9 +45,11 @@ def combine(data,filename):
         length = len(instance.tgt)
         tgt = ' '.join([str(elem) for elem in instance.tgt])
         tgt =  tgt.replace("<EOS>","")
-        final_list.append(tgt+" <eos>|||0,{},1 ".format((length-1)/2)+ " {},{},2".format((length-1)/2,length-1) )
+        str1 = " <eos>|||0,{},1 ".format((length-1)/2)
+        str2 = " {},{},2".format((length-1)/2,length-1)
+        final_list.append(tgt+str1+str2)
         if len(final_list)<10:
-            print(tgt+" <eos>|||")
+            print(tgt+str1+str2)
     print(filename,len(final_list))
     write_samples(final_list,filename)
 def src (data,filename):
