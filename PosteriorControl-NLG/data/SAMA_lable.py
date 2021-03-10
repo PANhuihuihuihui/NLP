@@ -40,13 +40,12 @@ def write_samples(samples, file_path, opt='w'):
             file.write('\n')
 
 def combine(data,filename):
-    "<eos>|||0,2,0 2,3,1 4,6,6 11,12,7 17,18,7 18,19,8"
     final_list = []
     for instance in data:
         length = len(instance.tgt)
         tgt = ' '.join([str(elem) for elem in instance.tgt])
         tgt =  tgt.replace("<EOS>","")
-        final_list.append(tgt+" <eos>|||")
+        final_list.append(tgt+" <eos>|||0,{},1 ".format(length))
         if len(final_list)<10:
             print(tgt+" <eos>|||")
     print(filename,len(final_list))
