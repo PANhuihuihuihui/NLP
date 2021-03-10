@@ -44,7 +44,8 @@ def combine(data,filename):
     final_list = []
     for instance in data:
         length = len(instance.tgt)
-        tgt = ' '.join([str(elem) for elem in instance.tgt]) 
+        tgt = ' '.join([str(elem) for elem in instance.tgt])
+        tgt.replace("<EOS>","")
         final_list.append(tgt+" <eos>|||")
         if len(final_list)<10:
             print(tgt+" <eos>|||")
@@ -55,8 +56,10 @@ def src (data,filename):
     final_list = []
     for instance in data:
         src = ' '.join([str(elem) for elem in instance.src])
+        
         src_skill_pred = " ".join([str(elem) for elem in instance.skillnet])
         src_skill = " ".join([str(elem) for elem in instance.skilltgt])
+        src_skill.replace("<SEP>","")
         final_list.append(valuelist[0]+src+valuelist[1]+valuelist[2]+src_skill+valuelist[3]+valuelist[4]+src_skill_pred+valuelist[5])
         if len(final_list)<10:
             print(valuelist[0]+src+valuelist[1]+valuelist[2]+src_skill+valuelist[3]+valuelist[4]+src_skill_pred+valuelist[5])
