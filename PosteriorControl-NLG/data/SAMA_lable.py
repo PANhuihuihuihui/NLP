@@ -45,8 +45,8 @@ def combine(data,filename):
         length = len(instance.tgt)
         tgt = ' '.join([str(elem) for elem in instance.tgt])
         tgt =  tgt.replace("<EOS>","")
-        str1 = " <eos>|||0,{},1 ".format((length-1)/2)
-        str2 = " {},{},2".format((length-1)/2,length-1)
+        str1 = " <eos>|||0,{},1 ".format(int((length-1)/2))
+        str2 = " {},{},2".format(int((length-1)/2),length-1)
         final_list.append(tgt+str1+str2)
         if len(final_list)<10:
             print(tgt+str1+str2)
