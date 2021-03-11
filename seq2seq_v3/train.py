@@ -146,11 +146,13 @@ if __name__ == "__main__":
     DEVICE = torch.device('cuda') if config.is_cuda else torch.device('cpu')
     dataset = PairDataset(config.data_path,
                           max_src_len=config.max_src_len,
+                          max_skill_len= config.max_skill_len,
                           max_tgt_len=config.max_tgt_len,
                           truncate_src=config.truncate_src,
                           truncate_tgt=config.truncate_tgt)
     val_dataset = PairDataset(config.val_data_path,
                               max_src_len=config.max_src_len,
+                              max_skill_len= config.max_skill_len,
                               max_tgt_len=config.max_tgt_len,
                               truncate_src=config.truncate_src,
                               truncate_tgt=config.truncate_tgt)

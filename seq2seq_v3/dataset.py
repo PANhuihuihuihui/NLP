@@ -22,6 +22,7 @@ class PairDataset(object):
                  filename,
                  tokenize: Callable = simple_tokenizer,
                  max_src_len: int = None,
+                 max_skill_len: int = None,
                  max_tgt_len: int = None,
                  truncate_src: bool = False,
                  truncate_tgt: bool = False):
@@ -34,7 +35,7 @@ class PairDataset(object):
             for i, line in enumerate(f):
                 # Split the source and reference by the <sep> tag.
                 pair = line.strip().split('<sep>')
-                if len(pair) != 2:
+                if len(pair) != 3:
                     print("Line %d of %s is malformed." % (i, filename))
                     print(line)
                     continue
@@ -44,13 +45,19 @@ class PairDataset(object):
                         src = src[:max_src_len]
                     else:
                         continue
-                tgt = tokenize(pair[1])
+                skill = tokenize(pair[1])
+                if max_skill_len and len(src) > max_skill_len:
+                    if truncate_src:
+                        skill = skill[:max_skill_len]
+                    else:
+                        continue
+                tgt = tokenize(pair[2])
                 if max_tgt_len and len(tgt) > max_tgt_len:
                     if truncate_tgt:
                         tgt = tgt[:max_tgt_len]
                     else:
                         continue
-                self.pairs.append((src, tgt))
+                self.pairs.append((src+skill, tgt))
         print("%d pairs." % len(self.pairs))
 
     def build_vocab(self, embed_file: str = None) -> Vocab:

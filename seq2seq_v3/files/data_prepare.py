@@ -45,9 +45,9 @@ def combine(data,filename):
         src = ' '.join([str(elem) for elem in instance.src])
         src_skill_pred = " ".join([str(elem) for elem in instance.skillnet])
         tgt = ' '.join([str(elem) for elem in instance.tgt]) 
-        final_list.append(src+src_skill_pred+"<sep>"+tgt)
+        final_list.append(src+"<sep>"+src_skill_pred+"<sep>"+tgt)
         if len(final_list)<10:
-            print(src+"<sep>"+tgt)
+            print(src+"<sep>"+src_skill_pred+"<sep>"+tgt)
     print(filename,len(final_list))
     write_samples(final_list,filename)
 
