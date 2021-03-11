@@ -14,7 +14,6 @@ import config
 from model import PGN
 from dataset import PairDataset
 from utils import source2ids, outputids2words, Beam, timer, add2heap, replace_oovs
-from nltk.corpus import stopwords
 
 
 class Predict():
@@ -31,9 +30,6 @@ class Predict():
         self.vocab = dataset.build_vocab(embed_file=config.embed_file)
 
         self.model = PGN(self.vocab)
-        self.stop_word = list(
-            set(stopwords.words('english'))
-            )
         self.model.load_model()
         self.model.to(self.DEVICE)
 
