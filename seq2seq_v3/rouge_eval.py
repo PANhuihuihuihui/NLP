@@ -33,7 +33,6 @@ class RougeEval():
                 if id >25*7:
                     continue
                 source, ref = line.strip().split('<sep>')
-                ref = ref.replace('。', '，',"、")
                 self.sources.append(source)
                 self.refs.append(ref)
         print(f'Test set contains {len(self.sources)} samples.')
@@ -69,7 +68,7 @@ result = rouge_eval.get_average()
 print('rouge1: ', result['rouge-1'])
 print('rouge2: ', result['rouge-2'])
 print('rougeL: ', result['rouge-l'])
-with open('../files/rouge_result.txt', 'a') as file:
+with open('./files/rouge_result.txt', 'a') as file:
     for r, metrics in result.items():
         file.write(r+'\n')
         for metric, value in metrics.items():

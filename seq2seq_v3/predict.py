@@ -22,7 +22,7 @@ class Predict():
     def __init__(self):
         self.DEVICE = config.DEVICE
 
-        dataset = PairDataset(config.data_path,
+        dataset = PairDataset(config.test_data_path,
                               max_src_len=config.max_src_len,
                               max_tgt_len=config.max_tgt_len,
                               truncate_src=config.truncate_src,
