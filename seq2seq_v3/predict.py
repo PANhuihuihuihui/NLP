@@ -23,6 +23,7 @@ class Predict():
 
         dataset = PairDataset(config.test_data_path,
                               max_src_len=config.max_src_len,
+                              max_skill_len= config.max_skill_len,
                               max_tgt_len=config.max_tgt_len,
                               truncate_src=config.truncate_src,
                               truncate_tgt=config.truncate_tgt)
@@ -230,31 +231,12 @@ if __name__ == "__main__":
         value = list(test)
         for i in range(10):
             picked = random.choice(value)
-            pair = picked.strip().split('<sep>')
-            src = simple_tokenizer(pair[0])
-            if config.max_src_len and len(src) > config.max_src_len:
-                if config.truncate_src:
-                    src = src[:config.max_src_len]
-                else:
-                    continue
-            skill = simple_tokenizer(pair[1])
-            if config.max_skill_len and len(src) > config.max_skill_len:
-                if config.truncate_src:
-                    skill = skill[:config.max_skill_len]
-                else:
-                    continue
-            tgt = simple_tokenizer(pair[2])
-            if config.max_tgt_len and len(tgt) > config.max_tgt_len:
-                if config.truncate_tgt:
-                    tgt = tgt[:config.max_tgt_len]
-                else:
-                    continue
-            source = src + skill
+            source, ref = picked.strip().split('<sep>')
             print("-----------{}---------".format(i))
             print('source: ', source, '\n')
             greedy_prediction = pred.predict(source.split(),  beam_search=False)
             print('greedy: ', greedy_prediction, '\n')
             beam_prediction = pred.predict(source.split(),  beam_search=True)
             print('beam: ', beam_prediction, '\n')
-            print('ref: ', tgt, '\n')
+            print('ref: ', ref, '\n')
             
