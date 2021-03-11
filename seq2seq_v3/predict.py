@@ -200,7 +200,7 @@ class Predict():
     @timer(module='doing prediction')
     def predict(self, text, tokenize=True, beam_search=True):
         if isinstance(text, str) and tokenize:
-            text = nltk.word_tokenize(text)
+            text = text.split()
         x, oov = source2ids(text, self.vocab)
         x = torch.tensor(x).to(self.DEVICE)
         len_oovs = torch.tensor([len(oov)]).to(self.DEVICE)
