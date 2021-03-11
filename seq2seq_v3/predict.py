@@ -230,7 +230,8 @@ if __name__ == "__main__":
         value = list(test)
         for i in range(10):
             picked = random.choice(value)
-            source, ref = picked.strip().split('<sep>')
+            source, skill,ref = picked.strip().split('<sep>')
+            source = source + skill
             print("-----------{}---------".format(i))
             print('source: ', source, '\n')
             greedy_prediction = pred.predict(source.split(),  beam_search=False)
