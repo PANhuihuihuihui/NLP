@@ -16,6 +16,7 @@ from dataset import PairDataset
 from utils import source2ids, outputids2words, Beam, timer, add2heap, replace_oovs,simple_tokenizer
 
 
+
 class Predict():
     @timer(module='initalize predicter')
     def __init__(self):
@@ -28,8 +29,7 @@ class Predict():
                               truncate_src=config.truncate_src,
                               truncate_tgt=config.truncate_tgt)
 
-        self.vocab = dataset.build_vocab(embed_file=config.embed_file)
-
+        self.vocab = torch.load(config.vocab_save_name)
         self.model = PGN(self.vocab)
         self.model.load_model()
         self.model.to(self.DEVICE)

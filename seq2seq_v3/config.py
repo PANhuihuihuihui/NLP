@@ -16,6 +16,7 @@ encoder_save_name = "encoder_bi_400"
 decoder_save_name ="decoder_ni_400"
 attention_save_name = "attention_400"
 reduce_state_save_name = "reduce_400"
+vocab_save_name = "vocab_400"
 
 # Data
 max_vocab_size = 30000

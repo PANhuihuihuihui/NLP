@@ -215,6 +215,7 @@ class PGN(nn.Module):
             self.decoder = torch.load(config.decoder_save_name)
             self.attention = torch.load(config.attention_save_name)
             self.reduce_state = torch.load(config.reduce_state_save_name)
+            self.v = torch.load(config.vocab_save_name)
 
         elif config.fine_tune:
             print('Loading model: ', '../saved_model/pgn/encoder.pt')
