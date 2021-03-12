@@ -13,8 +13,8 @@ sys.path.append(sys.path.append(abs_path))
 import config
 from model import PGN
 from dataset import PairDataset
-from utils import source2ids, outputids2words, Beam, timer, add2heap, replace_oovs
-from nltk.corpus import stopwords
+from utils import source2ids, outputids2words, Beam, timer, add2heap, replace_oovs,simple_tokenizer
+
 
 
 class Predict():
@@ -24,16 +24,13 @@ class Predict():
 
         dataset = PairDataset(config.test_data_path,
                               max_src_len=config.max_src_len,
+                              max_skill_len= config.max_skill_len,
                               max_tgt_len=config.max_tgt_len,
                               truncate_src=config.truncate_src,
                               truncate_tgt=config.truncate_tgt)
 
-        self.vocab = dataset.build_vocab(embed_file=config.embed_file)
-
+        self.vocab = torch.load(config.vocab_save_name)
         self.model = PGN(self.vocab)
-        self.stop_word = list(
-            set(stopwords.words('english'))
-            )
         self.model.load_model()
         self.model.to(self.DEVICE)
 
@@ -204,7 +201,7 @@ class Predict():
     @timer(module='doing prediction')
     def predict(self, text, tokenize=True, beam_search=True):
         if isinstance(text, str) and tokenize:
-            text = nltk.word_tokenize(text)
+            text = text.split()
         x, oov = source2ids(text, self.vocab)
         x = torch.tensor(x).to(self.DEVICE)
         len_oovs = torch.tensor([len(oov)]).to(self.DEVICE)
@@ -234,7 +231,8 @@ if __name__ == "__main__":
         value = list(test)
         for i in range(10):
             picked = random.choice(value)
-            source, ref = picked.strip().split('<sep>')
+            source,skill, ref = picked.strip().split('<sep>')
+            source = source+skill
             print("-----------{}---------".format(i))
             print('source: ', source, '\n')
             greedy_prediction = pred.predict(source.split(),  beam_search=False)

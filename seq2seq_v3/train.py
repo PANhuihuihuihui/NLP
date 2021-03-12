@@ -134,6 +134,7 @@ def train(dataset, val_dataset, v, start_epoch=0):
                 torch.save(model.decoder, config.decoder_save_name)
                 torch.save(model.attention, config.attention_save_name)
                 torch.save(model.reduce_state, config.reduce_state_save_name)
+                torch.save(model.v,config.vocab_save_name)
                 val_losses = avg_val_loss
             with open(config.losses_path, 'wb') as f:
                 pickle.dump(val_losses, f)
