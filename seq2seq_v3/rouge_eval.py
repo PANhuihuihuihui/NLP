@@ -32,8 +32,8 @@ class RougeEval():
                     continue
                 if id >25*7:
                     continue
-                source, ref = line.strip().split('<sep>')
-                self.sources.append(source)
+                source,skill, ref = line.strip().split('<sep>')
+                self.sources.append(source[:config.max_src_len]+skill[:config.max_skill_len])
                 self.refs.append(ref)
         print(f'Test set contains {len(self.sources)} samples.')
 

@@ -232,7 +232,7 @@ if __name__ == "__main__":
         for i in range(10):
             picked = random.choice(value)
             source,skill, ref = picked.strip().split('<sep>')
-            source = source+skill
+            source = source[:config.max_src_len]+skill[:config.max_skill_len]
             print("-----------{}---------".format(i))
             print('source: ', source, '\n')
             greedy_prediction = pred.predict(source.split(),  beam_search=False)
