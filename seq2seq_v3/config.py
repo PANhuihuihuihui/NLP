@@ -21,7 +21,7 @@ vocab_save_name = "vocab_{}".format(hidden_size)
 
 # Data
 max_vocab_size = 20000
-embed_file: Optional[str] = None  # use pre-trained embeddings
+embed_file: Optional[str] = "files/pretrained_w2v"  # use pre-trained embeddings
 source = 'train'    # use value: train or  big_samples 
 data_path: str = 'files/{}.txt'.format(source)
 val_data_path: Optional[str] = 'files/val.txt'

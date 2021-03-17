@@ -2,7 +2,7 @@
 
 from collections import Counter
 import numpy as np
-from untils import load_pretrain_emb,norm2one
+from utils import load_pretrain_emb,norm2one
 
 
 class Vocab(object):

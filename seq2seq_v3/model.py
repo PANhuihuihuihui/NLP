@@ -114,7 +114,7 @@ class Decoder(nn.Module):
                  embed_size,
                  hidden_size,
                  enc_hidden_size=None,
-                 is_cuda=True
+                 is_cuda=True,
                  embedding = None):
         super(Decoder, self).__init__()
         if embedding is not None:

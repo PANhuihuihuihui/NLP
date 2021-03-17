@@ -34,7 +34,6 @@ class RougeEval():
                     continue
                 source,skill, ref = line.strip().split('<sep>')
                 self.sources.append(source[:config.max_src_len]+skill[:config.max_skill_len])
-                self.refs.append(ref)
         print(f'Test set contains {len(self.sources)} samples.')
 
     @timer('building hypotheses')

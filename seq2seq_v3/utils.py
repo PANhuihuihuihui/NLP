@@ -4,7 +4,7 @@ import heapq
 import random
 import sys
 import pathlib
-
+import codecs
 import torch
 
 abs_path = pathlib.Path(__file__).parent.absolute()
