@@ -7,7 +7,7 @@ import torch
 # General
 hidden_size: int = 300
 dec_hidden_size: Optional[int] = 300
-embed_size: int = 100
+embed_size: int = 100 # should not change if you load word2vec pretrain
 pointer = True
 
 #
@@ -20,7 +20,7 @@ reduce_state_save_name = "reduce_{}".format(hidden_size)
 vocab_save_name = "vocab_{}".format(hidden_size)
 
 # Data
-max_vocab_size = 30000
+max_vocab_size = 20000
 embed_file: Optional[str] = None  # use pre-trained embeddings
 source = 'train'    # use value: train or  big_samples 
 data_path: str = 'files/{}.txt'.format(source)
