@@ -5,8 +5,8 @@ from typing import Optional
 import torch
 
 # General
-hidden_size: int = 300
-dec_hidden_size: Optional[int] = 300
+hidden_size: int = 250
+dec_hidden_size: Optional[int] = 250
 embed_size: int = 100 # should not change if you load word2vec pretrain
 pointer = True
 
@@ -20,7 +20,7 @@ reduce_state_save_name = "reduce_{}".format(hidden_size)
 vocab_save_name = "vocab_{}".format(hidden_size)
 
 # Data
-max_vocab_size = 20000
+max_vocab_size = 25000
 embed_file: Optional[str] = "files/pretrained_w2v"  # use pre-trained embeddings
 source = 'train'    # use value: train or  big_samples 
 data_path: str = 'files/{}.txt'.format(source)
@@ -31,9 +31,9 @@ max_src_len: int = 300
 max_tgt_len: int = 400  # exclusive of special tokens such as EOS
 truncate_src: bool = True
 truncate_tgt: bool = True
-min_dec_steps: int = 30
+min_dec_steps: int = 40
 max_dec_steps: int = 500
-enc_rnn_dropout: float = 0.4
+enc_rnn_dropout: float = 0.5
 enc_attn: bool = True
 dec_attn: bool = True
 dec_in_dropout = 0
