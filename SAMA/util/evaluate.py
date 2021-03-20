@@ -127,8 +127,8 @@ def evaluateRouge(data, model, path):
     rebuild_gold = []
     rebuild_pred = []
     for idx in range(instances_num):
-        rebuild_gold.append("".join(gold_result[idx][0]))
-        rebuild_pred.append("".join(pred_result[idx]))
+        rebuild_gold.append(" ".join(gold_result[idx][0]))
+        rebuild_pred.append(" ".join(pred_result[idx]))
     print(rebuild_gold[0])
     print(rebuild_pred[0])
     rouge= Rouge()
