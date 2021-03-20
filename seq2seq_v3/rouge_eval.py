@@ -65,6 +65,8 @@ class RougeEval():
 rouge_eval = RougeEval(config.test_data_path)
 predict = Predict()
 rouge_eval.build_hypos(predict)
+print(rouge_eval.hypos[0])
+print(rouge_eval.refs[0])
 result = rouge_eval.get_average()
 print('rouge1: ', result['rouge-1'])
 print('rouge2: ', result['rouge-2'])
