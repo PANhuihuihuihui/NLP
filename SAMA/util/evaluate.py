@@ -124,8 +124,15 @@ def evaluateRouge(data, model, path):
     # outputFile.close()
 
     # evaluate
+    rebuild_gold = []
+    rebuild_pred = []
+    for idx in range(instances_num):
+        for idy in range(len(gold_result[idx][0])):
+            rebuild_gold.append("".join(gold_result[idx][0][idy]))
+        for idy in range(len(pred_result[idx])):
+            rebuild_pred.append("".join(pred_result[idx][idy]))
     rouge= Rouge()
-    result = rouge.get_scores(pred_result, gold_result, avg=True)
+    result = rouge.get_scores(rebuild_pred, rebuild_gold, avg=True)
 
     print("time: %.2fs, speed: %.2fst/s"% (decode_time, speed))
     print('rouge1: ', result['rouge-1'])
