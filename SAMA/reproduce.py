@@ -91,7 +91,8 @@ if __name__ == "__main__":
         param_count += param.view(-1).size()[0]
     print('total number of parameters of complete model: %d\n' % param_count)
 
-    BLUE_score_1, BLUE_score_2, BLUE_score_3, BLEU4 = evaluate(
-        data, model, data.result_dir + "/" + "generation.txt")
-
+    # BLUE_score_1, BLUE_score_2, BLUE_score_3, BLEU4 = evaluate(
+    #     data, model, data.result_dir + "/" + "generation.txt")
+    
+    evaluate(data, model, data.result_dir + "/" + "generation.txt")
     gc.collect()
