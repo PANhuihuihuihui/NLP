@@ -124,10 +124,10 @@ def evaluateRouge(data, model, path):
     # outputFile.close()
 
     # evaluate
-    result = Rouge.get_scores(pred_result, gold_result, avg=True)
+    rouge= Rouge()
+    result = rouge.get_scores(pred_result, gold_result, avg=True)
 
-    print("time: %.2fs, speed: %.2fst/s"
-          % (decode_time, speed))
+    print("time: %.2fs, speed: %.2fst/s"% (decode_time, speed))
     print('rouge1: ', result['rouge-1'])
     print('rouge2: ', result['rouge-2'])
     print('rougeL: ', result['rouge-l'])
