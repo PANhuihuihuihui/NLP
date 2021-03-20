@@ -127,12 +127,10 @@ def evaluateRouge(data, model, path):
     rebuild_gold = []
     rebuild_pred = []
     for idx in range(instances_num):
-        for idy in range(len(gold_result[idx][0])):
-            rebuild_gold.append("".join(gold_result[idx][0][idy]))
-        for idy in range(len(pred_result[idx])):
-            rebuild_pred.append("".join(pred_result[idx][idy]))
-    print(len(rebuild_gold),len(rebuild_pred))
-    print(rebuild_gold)
+        rebuild_gold.append("".join(gold_result[idx][0]))
+        rebuild_pred.append("".join(pred_result[idx]))
+    print(rebuild_gold[0])
+    print(rebuild_pred[0])
     rouge= Rouge()
     result = rouge.get_scores(rebuild_pred, rebuild_gold, avg=True)
 
