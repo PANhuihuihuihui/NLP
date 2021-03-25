@@ -70,6 +70,8 @@ print(rouge_eval.refs[0])
 result = rouge_eval.get_average()
 print('rouge1: ', result['rouge-1'])
 print('rouge2: ', result['rouge-2'])
+print('rouge3: ', result['rouge-3'])
+print('rouge3: ', result['rouge-4'])
 print('rougeL: ', result['rouge-l'])
 with open('./files/rouge_result.txt', 'a') as file:
     for r, metrics in result.items():
