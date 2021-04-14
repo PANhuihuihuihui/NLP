@@ -51,7 +51,7 @@ def combine(data,filename):
     print(filename,len(final_list))
     write_samples(final_list,filename)
 
-def produce(filename,data):
+def produce(data,filename):
     final_list = []
     for instance in data:
         src = ' '.join([str(elem) for elem in instance.src])
@@ -91,4 +91,4 @@ train:  8000 val:  1000 test:  1656
 # for i in range(50):
 #     print(gVocab.src_vocab.id2word[str(i)] == gVocab.tgt_vocab.id2word[str(i)])
 #prepare all the data for take a galance:
-combine(test,"test_check.txt")
+produce(test,"test_check.txt")
