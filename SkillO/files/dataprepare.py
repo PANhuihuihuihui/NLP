@@ -12,13 +12,14 @@ def write_samples(samples, file_path, opt='w'):
             file.write(line)
             file.write('\n')
 
-def combine(data,filename):
+def process(data,filename,skill_list):
     final_list = []
     for instance in data:
         src = ' '.join([str(elem) for elem in instance.src])
+        src_extract = " ".join([str(elem) for elem in instance.skillnet if str(elem).lower in skill_dic ])
         src_skill_pred = " ".join([str(elem) for elem in instance.skillnet])
-        tgt = ' '.join([str(elem) for elem in instance.tgt]) 
-        final_list.append(src+"<sep>"+src_skill_pred+"<sep>"+tgt)
+        tgt = ' '.join([str(elem) for elem in instance.tgt])
+        final_list.append(src+"<sep>"+src_extract+"<sep>"+src_skill_pred+"<sep>"+tgt)
         if len(final_list)<10:
             print(src+"<sep>"+src_skill_pred+"<sep>"+tgt)
     print(filename,len(final_list))
@@ -40,6 +41,14 @@ train_dataset = torch.load(train)
 test_dataset = torch.load(test)
 gVocab = torch.load(vocab_dir)
 
+src_dic = gVocab.src_vocab
+skill_dic = gVocab.skilltgt_vocab
+tgt_dic = gVocab.tgt_vocab
+skill_list = [str(elem).lower() for elem in skill_dic.keys()]
+
+
+
+
 
 data = train_dataset + test_dataset
 train = data[0:8000] 
@@ -49,3 +58,4 @@ test = data[8500:-1]
 combine(train,"train.txt")
 combine(val,"val.txt")
 combine(test,"test.txt")
+
