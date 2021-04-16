@@ -71,8 +71,8 @@ class PairDataset(object):
         for word, count in word_counts.most_common(config.max_vocab_size):
             vocab.add_words([word])
         if embed_file is not None:
-            count = vocab.load_embeddings(embed_file)
-            print("%d pre-trained embeddings loaded." % count)
+            count,unk = vocab.load_embedding_sama(embed_file)
+            print("{} pre-trained embeddings loaded,{} unkown word." .format(count,unk))
 
         return vocab
 

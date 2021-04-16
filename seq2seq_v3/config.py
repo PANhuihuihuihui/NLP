@@ -5,9 +5,9 @@ from typing import Optional
 import torch
 
 # General
-hidden_size: int = 300
-dec_hidden_size: Optional[int] = 300
-embed_size: int = 100
+hidden_size: int = 400
+dec_hidden_size: Optional[int] = 400
+embed_size: int = 100 # should not change if you load word2vec pretrain
 pointer = True
 
 #
@@ -21,7 +21,7 @@ vocab_save_name = "vocab_{}".format(hidden_size)
 
 # Data
 max_vocab_size = 30000
-embed_file: Optional[str] = None  # use pre-trained embeddings
+embed_file: Optional[str] = "files/pretrained_w2v"  # use pre-trained embeddings
 source = 'train'    # use value: train or  big_samples 
 data_path: str = 'files/{}.txt'.format(source)
 val_data_path: Optional[str] = 'files/val.txt'
@@ -31,14 +31,14 @@ max_src_len: int = 300
 max_tgt_len: int = 400  # exclusive of special tokens such as EOS
 truncate_src: bool = True
 truncate_tgt: bool = True
-min_dec_steps: int = 30
+min_dec_steps: int = 40
 max_dec_steps: int = 500
-enc_rnn_dropout: float = 0.4
+enc_rnn_dropout: float = 0.5
 enc_attn: bool = True
 dec_attn: bool = True
-dec_in_dropout = 0
-dec_rnn_dropout = 0
-dec_out_dropout = 0
+dec_in_dropout = 0.2
+dec_rnn_dropout = 0.2
+dec_out_dropout = 0.2
 
 
 # Training
@@ -50,8 +50,8 @@ learning_rate = 0.005
 lr_decay = 0.001
 initial_accumulator_value = 0.1
 epochs = 10
-batch_size = 8
-coverage = False
+batch_size = 4
+coverage = True
 fine_tune = False
 scheduled_sampling = False
 weight_tying = False

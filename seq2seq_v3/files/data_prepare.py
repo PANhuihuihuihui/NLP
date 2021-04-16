@@ -51,15 +51,26 @@ def combine(data,filename):
     print(filename,len(final_list))
     write_samples(final_list,filename)
 
-
+def produce(data,filename):
+    final_list = []
+    for instance in data:
+        src = ' '.join([str(elem) for elem in instance.src])
+        src_skill_pred = " ".join([str(elem) for elem in instance.skillnet])
+        src_skill = " ".join([str(elem) for elem in instance.skilltgt])
+        tgt = ' '.join([str(elem) for elem in instance.tgt]) 
+        final_list.append(src+"\n"+src_skill+"\n"+src_skill_pred+"\n"+tgt+"\n")
+        if len(final_list)<10:
+            print(src+"<sep>"+src_skill_pred+"<sep>"+tgt)
+    print(filename,len(final_list))
+    write_samples(final_list,filename)
 data = train_dataset + test_dataset
 train = data[0:8000] 
 val = data[8000:8500] 
 test = data[8500:-1]
 
-combine(train,"train.txt")
-combine(val,"val.txt")
-combine(test,"test.txt")
+# combine(train,"train.txt")
+# combine(val,"val.txt")
+# combine(test,"test.txt")
 
 # torch.save(train, '/userhome/30/hjpan/NLP/merge/data/train.pt')
 # torch.save(train, '/userhome/30/hjpan/NLP/merge/data/val.pt')
@@ -79,3 +90,5 @@ train:  8000 val:  1000 test:  1656
 
 # for i in range(50):
 #     print(gVocab.src_vocab.id2word[str(i)] == gVocab.tgt_vocab.id2word[str(i)])
+#prepare all the data for take a galance:
+produce(test,"test_check.txt")

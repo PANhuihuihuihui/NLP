@@ -107,4 +107,25 @@ def final_preprocess(text):
     ps = PorterStemmer()
     text = ps.stem(text)
     return text
-    
+def load_pretrain_emb(path):
+    file_r = codecs.open(path, "rb", "utf-8")
+    line = file_r.readline()
+    voc_size, vec_dim = map(int, line.split(" "))
+    embedding = dict()
+    line = file_r.readline()
+    while line:
+        items = line.split(" ")
+        item = items[0]
+
+        try:
+            vec = np.array(items[1:], dtype="float32")
+        except Exception:
+            item = " "
+            vec = np.array(items[2:], dtype="float32")
+
+        embedding[item] = vec
+        line = file_r.readline()
+    return embedding, vec_dim
+def norm2one(vec):
+    root_sum_square = np.sqrt(np.sum(np.square(vec)))
+    return vec/root_sum_square

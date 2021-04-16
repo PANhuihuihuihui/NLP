@@ -20,9 +20,13 @@ class Encoder(nn.Module):
                  vocab_size,
                  embed_size,
                  hidden_size,
-                 rnn_drop: float = 0):
+                 rnn_drop: float = 0,
+                 embedding = None):
         super(Encoder, self).__init__()
-        self.embedding = nn.Embedding(vocab_size, embed_size)
+        if embedding is not None:
+            self.embedding = nn.Embedding.from_pretrained(torch.Tensor(embedding))
+        else:
+            self.embedding = nn.Embedding(vocab_size, embed_size)
         self.hidden_size = hidden_size
         self.lstm = nn.LSTM(embed_size,
                             hidden_size,
@@ -110,8 +114,13 @@ class Decoder(nn.Module):
                  embed_size,
                  hidden_size,
                  enc_hidden_size=None,
-                 is_cuda=True):
+                 is_cuda=True,
+                 embedding = None):
         super(Decoder, self).__init__()
+        if embedding is not None:
+            self.embedding = nn.Embedding.from_pretrained(torch.Tensor(embedding))
+        else:
+            self.embedding = nn.Embedding(vocab_size, embed_size)
         self.embedding = nn.Embedding(vocab_size, embed_size)
         self.DEVICE = torch.device('cuda') if is_cuda else torch.device('cpu')
         self.vocab_size = vocab_size
@@ -201,10 +210,12 @@ class PGN(nn.Module):
             len(v),
             config.embed_size,
             config.hidden_size,
+            embedding=v.embeddings,
         )
         self.decoder = Decoder(len(v),
                                config.embed_size,
                                config.hidden_size,
+                               embedding=v.embeddings,
                                )
         self.reduce_state = ReduceState()
 

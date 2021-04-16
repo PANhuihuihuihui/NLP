@@ -229,14 +229,13 @@ if __name__ == "__main__":
     # Randomly pick a sample in test set to predict.
     with open(config.test_data_path, 'r') as test:
         value = list(test)
-        for i in range(10):
-            picked = random.choice(value)
+        for i,picked in enumerate(value):
             source,skill, ref = picked.strip().split('<sep>')
-            source = source+skill
+            source = source[:config.max_src_len]+skill[:config.max_skill_len]
             print("-----------{}---------".format(i))
-            print('source: ', source, '\n')
-            greedy_prediction = pred.predict(source.split(),  beam_search=False)
-            print('greedy: ', greedy_prediction, '\n')
+            # print('source: ', source, '\n')
+            # greedy_prediction = pred.predict(source.split(),  beam_search=False)
+            # print('greedy: ', greedy_prediction, '\n')
             beam_prediction = pred.predict(source.split(),  beam_search=True)
             print('beam: ', beam_prediction, '\n')
             print('ref: ', ref, '\n')

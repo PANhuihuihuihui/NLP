@@ -2,6 +2,7 @@
 
 from collections import Counter
 import numpy as np
+from utils import load_pretrain_emb,norm2one
 
 
 class Vocab(object):
@@ -29,7 +30,7 @@ class Vocab(object):
                 self.index2word.append(word)
         self.word2count.update(words)
 
-    def load_embeddings(self, file_path: str, dtype=np.float32) -> int:
+    def load_embeddings_txt(self, file_path: str, dtype=np.float32) -> int:
         num_embeddings = 0
         vocab_size = len(self)
         with open(file_path, 'rb') as f:
@@ -47,6 +48,23 @@ class Vocab(object):
                     self.embeddings[idx] = vec
                     num_embeddings += 1
         return num_embeddings
+    def load_embedding_sama(self,path: str):
+        embedding, vec_dim = load_pretrain_emb(path)
+        ukn_count = 0
+        scale = np.sqrt(3.0/vec_dim)
+        vocab_size = len(self)
+        emb = np.zeros([vocab_size,vec_dim], dtype='float32')
+        for word,id in self.word2index.items():
+            if word in embedding:
+                emb[int(id), :] = norm2one(embedding[word])
+            elif word.lower() in embedding:
+                emb[int(id), :] = norm2one(embedding[word.lower()])
+            elif word != "<PAD>":
+                ukn_count += 1
+                random_vec = np.random.uniform(-scale, scale, size=(vec_dim,)).astype('float32')
+                emb[int(id), :] = random_vec
+        self.embeddings = emb
+        return vocab_size-ukn_count, ukn_count
 
     def __getitem__(self, item):
         if type(item) is int:
