@@ -27,7 +27,7 @@ def train(dataset, val_dataset, v, start_epoch=0):
  
     DEVICE = torch.device("cuda" if config.is_cuda else "cpu")
 
-    model = skillO(v)
+    model = SkillO(v)
 
     model.load_model()
 
