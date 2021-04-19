@@ -39,7 +39,7 @@ stringlist = string.split()
 string = "1 、中专 、 大专 以上 学历 ， 年龄 25 岁 以上 ， 机械 电子 类 专业 优先 ， 有 药品 、 保健品 、 食品 工厂 经历 优先 。  2 、 有 3 年 以上 生产 设备 制造 维护 保养 以及 维修 经验 （ 自动化 包装 设备 生产 制造 、 组装 、 调试 、 售后服务 等 经验者 优先 ) ， （ 熟悉 自动化 灌装机 、 背封 灌装机 、 三维 包装机 优先 ）  3 、 具有 电工 操作证 ， 能够 解决 设备 的 一般性 故障 ；  4 、 能够 读 懂 电气 图纸 、 根据 设备 结构图 ， 电子 图纸 分析 故障 。  5 、 能够 熟练 维修 机械 设备 ， 熟悉 机械 原理 及 电气 原理 ， 有 独立 处理 机械 设备 故障 能力 ， 会 电焊 或 氩弧 焊 <EOS>".replace(" ","")
 #string = "1 、 统招 本科 及 以上 学历 ， 5 年 以上 IM 开发 经验 ；  2 、 熟悉 主流 IM 产品 的 技术 架构 。 具备 高性能 ， 高 并发 ， 高 稳定性 系统 开发 和 调优 实际 工作 经验 ；  3 、 熟悉 IM 通讯 机制 及 常用 数据 传输 协议 ；  4 、 有 大型 IM 服务端 开发 经验 或 架构 设计 经验者 优先 。 <EOS>".replace(" ","")
 string = "1 、 本科 及 以上 学历 ， 5 年 以上 零售 行业 销售 管理 工作 经验 ；  2 、 熟悉 零售 卖场 连锁 营运 管理 和 销售 管理 ， 了解 相关 的 法律 法规 ；  3 、 有 较 好 的 计划 组织 、 目标 管理 、 统筹 策划 和 商业 创新 能力 。 <EOS>".replace(" ","")
-string = "1 、 统招 全日制 大学 本科 及 以上 学历 。  2 、 3-5 年 以上 风险 计量 模型 开发 及 实施 经验 ， 从事 过 信用 评级 、 模型 开发 验证 实施 、 数据 质量 管理 、 风险 报告 、 风险 监测 、 组合 分析 等 方面 工作 。  3 、 精通 SAS 、 Python 等 工具 及 机器 学习 各 算法 ， 具备 较 强 的 数理 统计 相关 知识 背景 。  4 、 熟悉 信用卡 系统 、 数据 及 业务 管理 。  5 、 具备 良好 的 项目 管理 能力 ， 沟通 及 展现 能力 。 <EOS>".replace(" ","")
+# string = "1 、 统招 全日制 大学 本科 及 以上 学历 。  2 、 3-5 年 以上 风险 计量 模型 开发 及 实施 经验 ， 从事 过 信用 评级 、 模型 开发 验证 实施 、 数据 质量 管理 、 风险 报告 、 风险 监测 、 组合 分析 等 方面 工作 。  3 、 精通 SAS 、 Python 等 工具 及 机器 学习 各 算法 ， 具备 较 强 的 数理 统计 相关 知识 背景 。  4 、 熟悉 信用卡 系统 、 数据 及 业务 管理 。  5 、 具备 良好 的 项目 管理 能力 ， 沟通 及 展现 能力 。 <EOS>".replace(" ","")
 # words = pseg.cut(string,use_paddle=True) 
 
 # for word, flag in words:
@@ -66,21 +66,44 @@ import re
 import thulac
 thu1 = thulac.thulac(seg_only=False, model_path="/home/phj/software/models")  #设置模式为行分词模式
 nwant = [ "ns", "ni", "a","d","h","k","r","c","p","y","e","o","g","w","m","f","u"]
-wnwant = ["能力","年龄","岁","年","经验者","有","会","优先","熟悉","能够","学历","工作","相关","性别","男女","个","即可","能","性","经验","如","熟知","考虑"]
+wnwant = ["能力","年龄","岁","年","经验者","有","会","优先","熟悉","能够","学历","工作","相关","性别","男女","个","即可","能","性","如","熟知","考虑"]
 tgtlist = re.split(r'[0-9]、',string[:-5])
 extract = []
-tgt_res = []
+string_sapce = string = "1 、 本科 及 以上 学历 ， 5 年 以上 零售 行业 销售 管理 工作 经验 ；  2 、 熟悉 零售 卖场 连锁 营运 管理 和 销售 管理 ， 了解 相关 的 法律 法规 ；  3 、 有 较 好 的 计划 组织 、 目标 管理 、 统筹 策划 和 商业 创新 能力 。 <EOS>"
+stringlist = string_sapce[:-5].split(" ")
+
+print(tgtlist)
+print(stringlist)
+counter = 0
+# stringlist.insert(0,"<nepod>")
+# couter_str_len = 0
+# for string in tgtlist:
+#     couter_str_len += len(string)
+stringlist.insert(0,"<nepod>")
 for index, string in enumerate(tgtlist):
     if index == 0:
+        counter+=2
         continue
     else:
         a = thu1.cut(string)
         tmp = []
         for elem , flage in a:
-            print("word: ",str(elem)," ",flage)
+            # print("word: ",str(elem)," ",flage)
             if flage in ["w","c"] and elem != "、" and len(tmp) != 0:
                 if len(tmp) > 6:
                     continue
+                if flage == "c" and len(tmp) < 2:
+                    continue
+                counter = counter + stringlist[counter:].index(tmp[-1])
+                sep_index = counter + stringlist[counter:].index(elem)
+                if flage == "w" :
+                    if sep_index + 3 >= len(stringlist):
+                        stringlist = stringlist[:sep_index+1]+["<eowd>","<eopd>"]+stringlist[sep_index+1:]
+                    else:
+                        stringlist = stringlist[:sep_index+1]+["<eowd>","<nepod>"]+stringlist[sep_index+1:]
+                if flage == "c":
+                    stringlist = stringlist[:sep_index]+["<eowd>","<nepod>"]+stringlist[sep_index:]
+                print("check: ",stringlist[counter],tmp[-1])
                 extract.append(" ".join(tmp))
                 tmp = []
             elif flage in nwant or elem in wnwant:
@@ -88,6 +111,7 @@ for index, string in enumerate(tgtlist):
                 print("word: ",str(elem)," ",flage)
             else:
                 tmp.append(elem)
+print(stringlist)
 print(extract)
 print("<SEP>".join(extract))
             
@@ -119,4 +143,21 @@ print("<SEP>".join(extract))
 <sep>财务 预测 客户 管理 听说 问题 自动化 意识 审美 创意 渠道 沟通 谈判 英文 开拓 英语 方案 预算 规划 资源 营销 翻译 研究 空间 基础 洞察 综合 计划 关系 推广 办公 实施 酒店 策划 税务 品牌 标准 金蝶 策略 核算 提案 外贸 业务 思维 能力 招聘 技巧 执行 文字 观察 临场应变 分析 市场 职业 精神 建设 设备 复杂 项目 定位 奉献 会计 技能 决策 销售 运作 处理 维护 软件 执行力 商务 书面 学习 系统 战略 调查 交流 指导 开发 解决 运营 注册 广告 协调
 <sep>1 、 本科 及 以上 学历 ， 电子 类 、 外贸 类 相关 专业 ；  2 、 5 年 及 以上 UPS 产品 外销 经验 ， 2 年 及 以上 外贸 区域 经理 或 同等 职位 经验 。  3 、 具有 良好 的 沟通 和 表达 能力 ， 具备 英语 四 级 及 以上 水平 ， 能 与 国外 客户 进行 日常 书面 及 口语 交流 ；  4 、 具有 较 强 的 业务 开拓 能力 ， 能 独立 开拓 新 客户 ， 维护 客户 基层 到 中 高层 人员 的 关系 。 <EOS>
 
+"""
+"""
+[统招全日制大学本科及以上学历。', 
+'3-5年以上风险计量模型开发及实施经验，从事过信用评级、模型开发验证实施、数据质量管理、风险报告、风险监测、组合分析等方面工作。', 
+'精通SAS、Python等工具及机器学习各算法，具备较强的数理统计相关知识背景。', 
+'熟悉信用卡系统、数据及业务管理。', 
+'具备良好的项目管理能力，沟通及展现能力。']
+
+统招 全日制 大学 本科<SEP>
+风险 计量 模型 开发<SEP>实施<SEP>
+精通 SAS Python 工具<SEP>
+机器 学习 算法<SEP>
+具备 数理 统计 知识 背景<SEP>
+信用卡 系统 数据<SEP>
+业务 管理<SEP>
+具备 项目 管理<SEP>
+沟通 展现
 """

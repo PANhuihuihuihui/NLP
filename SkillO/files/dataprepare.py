@@ -21,7 +21,7 @@ def process(data,filename,skill_list):
         tgt = ' '.join([str(elem) for elem in instance.tgt])
         if len(instance.skilltgt) < 5:
             string = tgt.replace(" ",'')
-            src_SAMA_extract = skills(string,thu1,skill_list)
+            src_SAMA_extract = skills(string,thu1,skill_list,tgt)
             if len(src_SAMA_extract) > len(instance.skilltgt):
                 src_SAMA_extract = " <SEP> ".join(src_SAMA_extract)
                 src_SAMA_extract += " <EOS>"

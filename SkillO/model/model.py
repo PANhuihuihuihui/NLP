@@ -312,7 +312,7 @@ class SkillO(nn.Module):
         skilldecoderInputinit = torch.zeros((batch_size, 1, config.embed_size))
         skilldecoderInput = self.sktgtembed(skilltgt_tensor)
         skilldecoderInput = torch.cat([skilldecoderInputinit, skilldecoderInput], 1)
-
+        # skilldecoderInput = [ ]
         sdhi = h0
         skseq = []
 
@@ -328,8 +328,12 @@ class SkillO(nn.Module):
             skdecoderOutput = self.skilldecoderSoftmax(skilloutFeature)
             skillgeneratePro = torch.log(skdecoderOutput)
             topSkillGenPro, topSkillGenPos = torch.topk(skillgeneratePro, 1)
-            skilldecoderfoTest = self.sktgtembed(topSkillGenPos).view(batch_size, self.wordEmbeddingDim)
-            skseq.append(skilldecoderfoTest.view(batch_size, 1, self.wordEmbeddingDim))
+            skilldecoderfoTest = self.sktgtembed(topSkillGenPos).view(batch_size, config.embed_size)
+            skseq.append(skilldecoderfoTest.view(batch_size, 1, config.embed_size))
+
+
+        
+        for idx in range(tgt_len):
             
         # Initialize coverage vector.
         coverage_vector = torch.zeros(x.size()).to(self.DEVICE)
