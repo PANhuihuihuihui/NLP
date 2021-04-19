@@ -6,6 +6,7 @@ def skills(string,thu1,skill_list):
     wnwant = ["能力","年龄","岁","年","经验者","有","会","优先","熟悉","能够","学历","工作","相关","性别","男女","个","即可","能","性","经验","如","熟知","考虑","线"]
     tgtlist = re.split(r'[0-9]、',string[:-5])
     extract = []
+    res_tgt = tgtlist[:]
     for index, string in enumerate(tgtlist):
         if index == 0:
             continue

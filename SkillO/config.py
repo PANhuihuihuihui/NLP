@@ -3,19 +3,19 @@ from typing import Optional
 import torch
 
 # General
-hidden_size: int = 400
-dec_hidden_size: Optional[int] = 400
+enc_hidden_size: int = 400
+dec_hidden_size: int = 400
 embed_size: int = 100 # should not change if you load word2vec pretrain
 pointer = True
 
 #
 
 model_name ="SkillO"
-encoder_save_name = "encoder_bi_{}".format(hidden_size)
-decoder_save_name ="decoder_h_{}".format(hidden_size)
-attention_save_name = "attention_{}".format(hidden_size)
-reduce_state_save_name = "reduce_{}".format(hidden_size)
-vocab_save_name = "vocab_{}".format(hidden_size)
+encoder_save_name = "encoder_bi_{}".format(enc_hidden_size)
+decoder_save_name ="decoder_h_{}".format(enc_hidden_size)
+attention_save_name = "attention_{}".format(enc_hidden_size)
+reduce_state_save_name = "reduce_{}".format(enc_hidden_size)
+vocab_save_name = "vocab_{}".format(enc_hidden_size)
 
 # Data
 max_vocab_size = 30000

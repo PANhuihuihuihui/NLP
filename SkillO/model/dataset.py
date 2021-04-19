@@ -22,7 +22,8 @@ class PairDataset(object):
                  filename,
                  tokenize: Callable = simple_tokenizer,
                  max_src_len: int = None,
-                 max_skill_len: int = None,
+                 max_src_skill_len: int = None,
+                 max_skill_net_len: int - None,
                  max_tgt_len: int = None,
                  truncate_src: bool = False,
                  truncate_tgt: bool = False):
@@ -35,7 +36,7 @@ class PairDataset(object):
             for i, line in enumerate(f):
                 # Split the source and reference by the <sep> tag.
                 pair = line.strip().split('<sep>')
-                if len(pair) != 3:
+                if len(pair) != 4:
                     print("Line %d of %s is malformed." % (i, filename))
                     print(line)
                     continue
