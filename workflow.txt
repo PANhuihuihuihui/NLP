@@ -1,6 +1,8 @@
 ssh hjpan@gatekeeper.cs.hku.hk
 TMSYEuXn
 ssh hjpan@gpugate1.cs.hku.hk
+653134A.com
+ssh phjhk@gpu2gate1.cs.hku.hk
 gpu-interactive
 exit
 
