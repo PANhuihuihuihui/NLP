@@ -3,4 +3,5 @@ import torch
 
 model = timm.create_model('resnet34')
 x     = torch.randn(1, 3, 224, 224)
-model(x).shape
+print(model(x).shape)
+print(model.summary())
