@@ -37,7 +37,7 @@ if __name__ == '__main__':
         if param.requires_grad:
             print (name, param.data)
     # seconde method
-    tensor = torch.tensor.randint((1,3,800,1200))
-    mask = torch.tensor.randint((1,1,800,1200)).to(torch.bool)
+    tensor = torch.randint((1,3,800,1200))
+    mask = torch.randint((1,1,800,1200)).to(torch.bool)
     x = NestedTensor(tensor,mask).to(device=device)
     summary(model,x)
